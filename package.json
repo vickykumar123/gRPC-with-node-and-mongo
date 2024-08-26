@@ -1,0 +1,25 @@
+{
+  "name": "grpc_with_node_and_mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pb:win:gen": "powershell -ExecutionPolicy unrestricted ./scripts/gen.ps1 greet blog",
+    "greet:server": "node greet/server/index.js",
+    "greet:client": "node greet/client/index.js",
+    "blog:server": "node blog/server/index.js",
+    "blog:client": "node blog/client/index.js",
+    "blog:db": "cd blog/; docker-compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.11.1",
+    "google-protobuf": "^3.21.4",
+    "mongodb": "^6.8.0"
+  },
+  "devDependencies": {
+    "grpc-tools": "1.11.3"
+  }
+}

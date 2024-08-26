@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package greet;
+
+import "sqrt.proto";
+
+message GreetRequest{
+  string first_name=1;
+}
+
+message GreetResponse{
+  string result = 1;
+}
+
+message SumRequest{
+  int32 num1 = 1;
+  int32 num2 = 2;
+}
+
+message SumResponse {
+  int32 result =1;
+}
+
+message PrimeRequest{
+  int32 num = 1;
+}
+
+message PrimeResponse{
+  int32 result=1;
+}
+
+message AvgRequest{
+  int32 num = 1;
+}
+
+message AvgResponse{
+  float result=1;
+}
+
+message MaxRequest{
+  int32 num =1;
+}
+
+message MaxResponse{
+  int32 result =1;
+}
+
+service GreetService{
+  rpc Greet(GreetRequest) returns (GreetResponse);
+  rpc GreetManyTimes (GreetRequest) returns (stream GreetResponse); // Server streaming
+  rpc LongGreet (stream GreetRequest) returns (GreetResponse); // client streaming
+  rpc GreetEveryone (stream GreetRequest) returns (stream GreetResponse); // Bi-directional streaming...
+  rpc GreetWithDeadline(GreetRequest) returns (GreetResponse);
+  
+  // Examples with calculation 
+  rpc Sum(SumRequest) returns (SumResponse);
+  rpc Prime (PrimeRequest) returns (stream PrimeResponse);
+  rpc Average (stream AvgRequest) returns ( AvgResponse);
+  rpc GetMax (stream MaxRequest) returns (stream MaxResponse);
+  rpc Sqrt (SqrtRequest) returns (SqrtResponse);
+}
